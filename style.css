@@ -10,8 +10,9 @@ body {
     font-family: 'Inter', Arial, sans-serif;
     color: #ffffff;
     min-height: 100vh;
+
     background:
-        linear-gradient(135deg, rgba(3, 15, 12, 0.94), rgba(5, 35, 26, 0.88)),
+        linear-gradient(135deg, rgba(12, 5, 25, 0.94), rgba(35, 12, 55, 0.88)),
         url("gym-bg.jpg") center/cover fixed no-repeat;
 }
 
@@ -25,8 +26,8 @@ nav {
     align-items: center;
     justify-content: space-between;
 
-    background: rgba(3, 18, 14, 0.88);
-    border-bottom: 1px solid rgba(95, 240, 174, 0.15);
+    background: rgba(15, 7, 25, 0.88);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.18);
 
     backdrop-filter: blur(18px);
     position: sticky;
@@ -41,7 +42,7 @@ nav {
 }
 
 .logo span {
-    color: #5ff0ae;
+    color: #a855f7;
 }
 
 .nav-right {
@@ -53,7 +54,7 @@ nav {
 .nav-right span,
 .nav-badge,
 .nav-tag {
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 1.5px;
@@ -69,7 +70,7 @@ nav {
 
 .nav-right a:hover,
 .home-link:hover {
-    color: #5ff0ae;
+    color: #a855f7;
 }
 
 /* ================= HOME PAGE ================= */
@@ -92,7 +93,7 @@ nav {
 .tag {
     display: inline-block;
 
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -109,12 +110,12 @@ nav {
 
 .hero-content h1 span,
 .hero-text h1 span {
-    color: #5ff0ae;
+    color: #a855f7;
 }
 
 .hero-content > p {
     max-width: 560px;
-    color: #b8cbc4;
+    color: #c7b9d4;
     line-height: 1.7;
     font-size: 15px;
 }
@@ -130,10 +131,10 @@ nav {
     padding: 10px 14px;
 
     background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(95, 240, 174, 0.15);
+    border: 1px solid rgba(168, 85, 247, 0.18);
     border-radius: 30px;
 
-    color: #dcebe5;
+    color: #e8dff0;
     font-size: 12px;
 }
 
@@ -144,9 +145,9 @@ nav {
 .profile-card,
 .upgrade-box,
 .ai-box {
-    background: rgba(7, 27, 21, 0.90);
+    background: rgba(20, 10, 30, 0.90);
 
-    border: 1px solid rgba(95, 240, 174, 0.18);
+    border: 1px solid rgba(168, 85, 247, 0.20);
     border-radius: 24px;
 
     box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
@@ -167,7 +168,7 @@ nav {
 
 .card-heading small,
 .box-small {
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -186,8 +187,8 @@ nav {
     justify-content: center;
 
     border-radius: 50%;
-    background: rgba(95, 240, 174, 0.12);
-    color: #5ff0ae;
+    background: rgba(168, 85, 247, 0.14);
+    color: #a855f7;
     font-size: 20px;
 }
 
@@ -197,7 +198,7 @@ label {
     display: block;
     margin: 15px 0 7px;
 
-    color: #dce9e4;
+    color: #e4dce9;
     font-size: 13px;
     font-weight: 600;
 }
@@ -207,10 +208,10 @@ select {
     width: 100%;
     padding: 14px;
 
-    border: 1px solid #29473d;
+    border: 1px solid #443052;
     border-radius: 12px;
 
-    background: #071b15;
+    background: #140a1e;
     color: white;
 
     outline: none;
@@ -218,13 +219,13 @@ select {
 }
 
 input::placeholder {
-    color: #71857d;
+    color: #8f8299;
 }
 
 input:focus,
 select:focus {
-    border-color: #5ff0ae;
-    box-shadow: 0 0 0 3px rgba(95, 240, 174, 0.08);
+    border-color: #a855f7;
+    box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.10);
 }
 
 /* ================= BUTTONS ================= */
@@ -250,8 +251,8 @@ button,
     border: none;
     border-radius: 13px;
 
-    background: #5ff0ae;
-    color: #062016;
+    background: #a855f7;
+    color: #ffffff;
 
     font-size: 14px;
     font-weight: 800;
@@ -263,7 +264,7 @@ button,
 .main-btn:hover,
 .primary-btn:hover {
     transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(95, 240, 174, 0.25);
+    box-shadow: 0 12px 35px rgba(168, 85, 247, 0.30);
 }
 
 .main-btn b {
@@ -288,11 +289,11 @@ button,
 }
 
 .welcome-section h1 span {
-    color: #5ff0ae;
+    color: #a855f7;
 }
 
 .welcome-section > div > p:last-child {
-    color: #9db1aa;
+    color: #a99bb2;
     line-height: 1.6;
 }
 
@@ -306,7 +307,7 @@ button,
 }
 
 .page-heading p:last-child {
-    color: #9db1aa;
+    color: #a99bb2;
 }
 
 /* ================= DETAILS ================= */
@@ -326,8 +327,8 @@ button,
 
     padding: 20px;
 
-    background: rgba(7, 27, 21, 0.88);
-    border: 1px solid rgba(95, 240, 174, 0.13);
+    background: rgba(20, 10, 30, 0.88);
+    border: 1px solid rgba(168, 85, 247, 0.15);
     border-radius: 18px;
 }
 
@@ -337,7 +338,7 @@ button,
 
 .detail-item small {
     display: block;
-    color: #71877e;
+    color: #81738c;
     font-size: 9px;
     margin-bottom: 6px;
     letter-spacing: 1px;
@@ -363,7 +364,7 @@ button,
 }
 
 .green-text {
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 11px;
     font-weight: 800;
     letter-spacing: 2px;
@@ -383,8 +384,8 @@ button,
 
     padding: 20px;
 
-    background: rgba(7, 27, 21, 0.90);
-    border: 1px solid rgba(95, 240, 174, 0.12);
+    background: rgba(20, 10, 30, 0.90);
+    border: 1px solid rgba(168, 85, 247, 0.14);
     border-radius: 18px;
 
     transition: 0.25s;
@@ -392,7 +393,7 @@ button,
 
 .workout-item:hover {
     transform: translateX(5px);
-    border-color: rgba(95, 240, 174, 0.45);
+    border-color: rgba(168, 85, 247, 0.50);
 }
 
 .number {
@@ -405,8 +406,8 @@ button,
 
     border-radius: 13px;
 
-    background: #153b2e;
-    color: #5ff0ae;
+    background: #3b1f5e;
+    color: #c084fc;
 
     font-weight: 800;
 }
@@ -420,14 +421,14 @@ button,
 }
 
 .workout-info p {
-    color: #849a91;
+    color: #91849a;
     font-size: 12px;
     line-height: 1.5;
     margin-top: 5px;
 }
 
 .workout-item strong {
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 12px;
 }
 
@@ -449,8 +450,8 @@ button,
     color: white;
     text-decoration: none;
 
-    background: rgba(7, 27, 21, 0.90);
-    border: 1px solid rgba(95, 240, 174, 0.13);
+    background: rgba(20, 10, 30, 0.90);
+    border: 1px solid rgba(168, 85, 247, 0.15);
     border-radius: 20px;
 
     transition: 0.25s;
@@ -459,8 +460,8 @@ button,
 .feature-box:hover,
 .feature-card:hover {
     transform: translateY(-7px);
-    border-color: #5ff0ae;
-    background: rgba(15, 55, 42, 0.95);
+    border-color: #a855f7;
+    background: rgba(48, 25, 70, 0.95);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
 }
 
@@ -476,7 +477,7 @@ button,
 
 .feature-box p,
 .feature-card p {
-    color: #81968d;
+    color: #91849a;
     font-size: 11px;
     line-height: 1.5;
 }
@@ -486,7 +487,7 @@ button,
     display: block;
     margin-top: 14px;
 
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 11px;
 }
 
@@ -500,8 +501,8 @@ button,
     margin-top: 30px;
     padding: 20px;
 
-    background: rgba(18, 51, 39, 0.9);
-    border: 1px solid #245340;
+    background: rgba(48, 25, 70, 0.90);
+    border: 1px solid #59347a;
     border-radius: 18px;
 }
 
@@ -514,8 +515,7 @@ button,
 }
 
 .tip-box p {
-    color: #9caf a6;
-    color: #9cafA6;
+    color: #aaa0b1;
     font-size: 12px;
 }
 
@@ -530,8 +530,8 @@ button,
 .food-card {
     padding: 25px;
 
-    background: rgba(7, 27, 21, 0.90);
-    border: 1px solid rgba(95, 240, 174, 0.10);
+    background: rgba(20, 10, 30, 0.90);
+    border: 1px solid rgba(168, 85, 247, 0.12);
     border-radius: 18px;
 }
 
@@ -545,7 +545,7 @@ button,
 }
 
 .food-card p {
-    color: #82978e;
+    color: #91849a;
     font-size: 12px;
     line-height: 1.6;
 }
@@ -558,8 +558,8 @@ button,
     margin-top: 18px;
     padding: 20px;
 
-    background: rgba(18, 51, 39, 0.9);
-    border: 1px solid #245340;
+    background: rgba(48, 25, 70, 0.90);
+    border: 1px solid #59347a;
     border-radius: 18px;
 }
 
@@ -568,7 +568,7 @@ button,
 }
 
 .health-box p {
-    color: #9caea6;
+    color: #aaa0b1;
     font-size: 12px;
     margin-top: 5px;
 }
@@ -584,13 +584,13 @@ button,
 .week-card {
     padding: 23px;
 
-    background: rgba(7, 27, 21, 0.90);
-    border: 1px solid rgba(95, 240, 174, 0.12);
+    background: rgba(20, 10, 30, 0.90);
+    border: 1px solid rgba(168, 85, 247, 0.14);
     border-radius: 18px;
 }
 
 .week-card b {
-    color: #5ff0ae;
+    color: #a855f7;
     font-size: 10px;
     letter-spacing: 1px;
 }
@@ -600,7 +600,7 @@ button,
 }
 
 .week-card p {
-    color: #82978e;
+    color: #91849a;
     font-size: 12px;
     line-height: 1.5;
 }
@@ -622,7 +622,7 @@ button,
 
     border-radius: 50%;
 
-    background: #153b2e;
+    background: #3b1f5e;
 
     display: flex;
     align-items: center;
@@ -637,7 +637,7 @@ button,
 }
 
 .ai-box > p:not(.green-text) {
-    color: #8ea49b;
+    color: #9b8da5;
     line-height: 1.6;
 }
 
@@ -657,13 +657,13 @@ button,
 
 .ai-result small {
     display: block;
-    color: #71877e;
+    color: #81738c;
     font-size: 9px;
     margin-bottom: 7px;
 }
 
 .ai-result strong {
-    color: #5ff0ae;
+    color: #a855f7;
 }
 
 .link-btn {
