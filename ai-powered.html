@@ -1,80 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>AI Powered</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
+
 <body class="inner-page">
 
+
 <nav>
-    <div class="logo">FIT<span>BUDDY</span></div>
-    <a href="workout.html" class="home-link">← Dashboard</a>
+
+    <div class="logo">
+        FIT<span>BUDDY</span>
+    </div>
+
+    <a href="workout.html" class="home-link">
+        ← Dashboard
+    </a>
+
 </nav>
+
 
 <main class="container">
 
+
     <div class="ai-box">
 
-        <div class="ai-icon">🤖</div>
 
-        <p class="green-text">AI FITNESS ASSISTANT</p>
+        <div class="ai-icon">
+            🤖
+        </div>
 
-        <h1>Your Personalized AI Plan</h1>
+
+        <p class="green-text">
+            AI FITNESS ASSISTANT
+        </p>
+
+
+        <h1>
+            Your Personalized AI Plan
+        </h1>
+
 
         <p>
             FitBuddy uses your selected fitness preferences to organize
             your workout and wellness routine.
         </p>
 
+
+        <!-- USER DETAILS -->
+
         <div class="ai-result">
 
-            <div>
-                <small>YOUR NAME</small>
-                <strong id="name"></strong>
-            </div>
 
             <div>
-                <small>FITNESS GOAL</small>
-                <strong id="goal"></strong>
+
+                <small>
+                    YOUR NAME
+                </small>
+
+                <strong id="name">
+                    Your Name
+                </strong>
+
             </div>
 
-            <div>
-                <small>FITNESS LEVEL</small>
-                <strong id="level"></strong>
-            </div>
 
             <div>
-                <small>WORKOUT DAYS</small>
-                <strong id="days"></strong>
+
+                <small>
+                    FITNESS GOAL
+                </small>
+
+                <strong id="goal">
+                    General Fitness
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    FITNESS LEVEL
+                </small>
+
+                <strong id="level">
+                    Beginner
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <small>
+                    WORKOUT DAYS
+                </small>
+
+                <strong id="days">
+                    3 Days
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- AI MESSAGE -->
+
+        <div
+            class="health-box"
+            id="aiMessage"
+            style="margin-top: 25px;"
+        >
+
+            <span>
+                🤖
+            </span>
+
+            <div>
+
+                <h3>
+                    FitBuddy AI Says
+                </h3>
+
+                <p id="aiText">
+                    Analyzing your fitness preferences...
+                </p>
+
             </div>
 
         </div>
 
-        <a href="workout.html" class="primary-btn link-btn">
+
+        <!-- BUTTON -->
+
+        <button
+            class="primary-btn full"
+            onclick="generateAIAdvice()"
+        >
+            ✨ Generate AI Guidance
+        </button>
+
+
+        <br><br>
+
+
+        <a
+            href="workout.html"
+            class="primary-btn link-btn"
+        >
             View My Generated Plan →
         </a>
 
+
     </div>
+
 
 </main>
 
+
+
 <script>
 
-const data = JSON.parse(localStorage.getItem("fitbuddyUser"));
 
-if (!data) {
-    window.location.href = "index.html";
+/* GET SAVED USER DATA */
+
+const savedData =
+    localStorage.getItem("fitbuddyUser");
+
+
+if (!savedData) {
+
+    window.location.href =
+        "index.html";
+
 }
 
-document.getElementById("name").textContent = data.name;
-document.getElementById("goal").textContent = data.goal;
-document.getElementById("level").textContent = data.level;
-document.getElementById("days").textContent = data.days + " Days";
+
+/* READ USER DATA */
+
+const data =
+    JSON.parse(savedData);
+
+
+/* DISPLAY USER DETAILS */
+
+document.getElementById("name").textContent =
+    data.name || "Your Name";
+
+
+document.getElementById("goal").textContent =
+    data.goal || "General Fitness";
+
+
+document.getElementById("level").textContent =
+    data.level || "Beginner";
+
+
+document.getElementById("days").textContent =
+    (data.days || "3") + " Days";
+
+
+
+/* AI GUIDANCE */
+
+function generateAIAdvice() {
+
+
+    const goal =
+        data.goal || "General Fitness";
+
+
+    const level =
+        data.level || "Beginner";
+
+
+    const days =
+        data.days || "3";
+
+
+    let message = "";
+
+
+    if (goal === "Strength") {
+
+        message =
+            "Your plan focuses on building strength with controlled bodyweight movements. Start comfortably, focus on good form and allow enough recovery between active days.";
+
+    }
+
+
+    else if (goal === "Endurance") {
+
+        message =
+            "Your plan focuses on building endurance gradually. Comfortable walking, cycling or other enjoyable cardio activities can help you stay active consistently.";
+
+    }
+
+
+    else if (goal === "Flexibility") {
+
+        message =
+            "Your plan focuses on mobility and flexibility. Use gentle movements, avoid forcing a stretch and give your body time to adapt.";
+
+    }
+
+
+    else {
+
+        message =
+            "Your plan is designed around general fitness. Mix comfortable movement, mobility and recovery while staying consistent with your routine.";
+
+    }
+
+
+    document.getElementById("aiText").textContent =
+        "Hi " +
+        (data.name || "there") +
+        "! " +
+        message +
+        " You selected " +
+        days +
+        " workout days and the " +
+        level +
+        " level. Keep your routine comfortable and consistent.";
+
+}
+
 
 </script>
 
+
 </body>
+
 </html>
