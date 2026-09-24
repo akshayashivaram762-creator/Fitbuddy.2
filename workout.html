@@ -109,6 +109,17 @@
                 </div>
 
             </div>
+            
+            <div class="detail-item">
+
+                 <span>⚖️</span>
+
+                <div>
+                   <small>WEIGHT</small>
+                   <h3 id="userWeight">Your Weight</h3>
+                 </div>
+
+            </div>
 
 
         </section>
@@ -463,6 +474,9 @@
 
                 document.getElementById("userDays").textContent =
                     (user.days || "3") + " Days";
+               
+                document.getElementById("userWeight").textContent =
+                    (user.weight || "Not provided") + " kg";
 
 
             } catch (error) {
