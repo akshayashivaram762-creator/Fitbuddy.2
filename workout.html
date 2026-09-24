@@ -11,6 +11,115 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <style>
+
+        /* ================================
+           CALENDAR
+        ================================= */
+
+        .calendar-box {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            backdrop-filter: blur(10px);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .calendar-header button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.10);
+            color: white;
+            font-size: 20px;
+        }
+
+        .calendar-header button:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        .calendar-weekdays,
+        .calendar-dates {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .calendar-weekdays div {
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            opacity: 0.7;
+            padding: 8px 0;
+        }
+
+        .calendar-date {
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 14px;
+        }
+
+        .calendar-date.empty {
+            background: transparent;
+        }
+
+        .calendar-date.today {
+            background: #55c878;
+            color: #07130c;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(85, 200, 120, 0.35);
+        }
+
+        .calendar-today-info {
+            margin-top: 18px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 600px) {
+
+            .calendar-box {
+                padding: 18px;
+            }
+
+            .calendar-weekdays,
+            .calendar-dates {
+                gap: 4px;
+            }
+
+            .calendar-date {
+                min-height: 36px;
+                font-size: 12px;
+            }
+
+            .calendar-header h2 {
+                font-size: 20px;
+            }
+
+        }
+
+    </style>
+
 </head>
 
 
@@ -127,6 +236,79 @@
 
             </div>
 
+
+        </section>
+
+
+        <!-- CALENDAR -->
+
+        <section class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="green-text">
+                        YOUR SCHEDULE
+                    </p>
+
+                    <h2>
+                        📅 Fitness Calendar
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="calendar-box">
+
+
+                <div class="calendar-header">
+
+                    <button onclick="changeMonth(-1)">
+                        ‹
+                    </button>
+
+                    <h2 id="calendarMonth">
+                        September 2026
+                    </h2>
+
+                    <button onclick="changeMonth(1)">
+                        ›
+                    </button>
+
+                </div>
+
+
+                <div class="calendar-weekdays">
+
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+
+                </div>
+
+
+                <div
+                    class="calendar-dates"
+                    id="calendarDates"
+                >
+                </div>
+
+
+                <div
+                    class="calendar-today-info"
+                    id="todayInfo"
+                >
+                </div>
+
+
+            </div>
 
         </section>
 
@@ -345,8 +527,14 @@
 
     <script>
 
+
+        /* =================================
+           USER DATA
+        ================================= */
+
         const savedUser =
             localStorage.getItem("fitbuddyUser");
+
 
         const workoutList =
             document.getElementById("workoutList");
@@ -545,7 +733,7 @@
                 workoutList.innerHTML = "";
 
 
-                /* CREATE NEW PLAN */
+                /* CREATE WORKOUT PLAN */
 
                 for (
                     let i = 0;
@@ -615,6 +803,223 @@
             }
 
         }
+
+
+        /* =================================
+           CALENDAR
+        ================================= */
+
+        const today =
+            new Date();
+
+
+        let calendarMonth =
+            today.getMonth();
+
+
+        let calendarYear =
+            today.getFullYear();
+
+
+        const monthNames = [
+
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+
+        ];
+
+
+        function renderCalendar() {
+
+
+            const calendarDates =
+                document.getElementById("calendarDates");
+
+
+            const calendarTitle =
+                document.getElementById("calendarMonth");
+
+
+            const todayInfo =
+                document.getElementById("todayInfo");
+
+
+            /* MONTH + YEAR */
+
+            calendarTitle.textContent =
+                monthNames[calendarMonth]
+                + " "
+                + calendarYear;
+
+
+            /* FIRST DAY */
+
+            const firstDay =
+                new Date(
+                    calendarYear,
+                    calendarMonth,
+                    1
+                ).getDay();
+
+
+            /* NUMBER OF DAYS */
+
+            const totalDays =
+                new Date(
+                    calendarYear,
+                    calendarMonth + 1,
+                    0
+                ).getDate();
+
+
+            calendarDates.innerHTML = "";
+
+
+            /* EMPTY CELLS */
+
+            for (
+                let i = 0;
+                i < firstDay;
+                i++
+            ) {
+
+                const empty =
+                    document.createElement("div");
+
+                empty.className =
+                    "calendar-date empty";
+
+                calendarDates.appendChild(
+                    empty
+                );
+
+            }
+
+
+            /* DATES */
+
+            for (
+                let date = 1;
+                date <= totalDays;
+                date++
+            ) {
+
+
+                const dateBox =
+                    document.createElement("div");
+
+
+                dateBox.className =
+                    "calendar-date";
+
+
+                dateBox.textContent =
+                    date;
+
+
+                /* TODAY */
+
+                if (
+
+                    date === today.getDate() &&
+
+                    calendarMonth === today.getMonth() &&
+
+                    calendarYear === today.getFullYear()
+
+                ) {
+
+                    dateBox.classList.add(
+                        "today"
+                    );
+
+                }
+
+
+                calendarDates.appendChild(
+                    dateBox
+                );
+
+            }
+
+
+            /* TODAY INFORMATION */
+
+            const dayName =
+                today.toLocaleDateString(
+                    "en-US",
+                    {
+                        weekday: "long"
+                    }
+                );
+
+
+            const fullDate =
+                today.toLocaleDateString(
+                    "en-US",
+                    {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+
+            todayInfo.textContent =
+                "Today is "
+                + dayName
+                + ", "
+                + fullDate;
+
+        }
+
+
+        /* PREVIOUS / NEXT MONTH */
+
+        function changeMonth(direction) {
+
+
+            calendarMonth +=
+                direction;
+
+
+            if (calendarMonth < 0) {
+
+                calendarMonth = 11;
+
+                calendarYear--;
+
+            }
+
+
+            if (calendarMonth > 11) {
+
+                calendarMonth = 0;
+
+                calendarYear++;
+
+            }
+
+
+            renderCalendar();
+
+        }
+
+
+        /* LOAD CALENDAR */
+
+        renderCalendar();
+
 
     </script>
 
