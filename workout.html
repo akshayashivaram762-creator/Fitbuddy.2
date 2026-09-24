@@ -146,117 +146,9 @@
 
             </div>
 
-
-<div class="workout-list">
-
-
-                <!-- DAY 1 -->
-
-                <div class="workout-item">
-
-                    <div class="number">
-                        01
-                    </div>
-
-                    <div class="workout-info">
-
-                        <h3>
-                            Warm Up
-                        </h3>
-
-                        <p>
-                            Light walking, arm circles and gentle dynamic movements.
-                        </p>
-
-                    </div>
-
-                    <strong>
-                        10 min
-                    </strong>
-
-                </div>
-
-
-                <!-- DAY 2 -->
-
-                <div class="workout-item">
-
-                    <div class="number">
-                        02
-                    </div>
-
-                    <div class="workout-info">
-
-                        <h3>
-                            Full Body Movement
-                        </h3>
-
-                        <p>
-                            Squats, wall push-ups, lunges and controlled movements.
-                        </p>
-
-                    </div>
-
-                    <strong>
-                        20 min
-                    </strong>
-
-                </div>
-
-
-                <!-- DAY 3 -->
-
-                <div class="workout-item">
-
-                    <div class="number">
-                        03
-                    </div>
-
-                    <div class="workout-info">
-
-                        <h3>
-                            Core & Mobility
-                        </h3>
-
-                        <p>
-                            Gentle core movements and mobility exercises.
-                        </p>
-
-                    </div>
-
-                    <strong>
-                        15 min
-                    </strong>
-
-                </div>
-
-
-                <!-- DAY 4 -->
-
-                <div class="workout-item">
-
-                    <div class="number">
-                        04
-                    </div>
-
-                    <div class="workout-info">
-
-                        <h3>
-                            Recovery
-                        </h3>
-
-                        <p>
-                            Easy movement, stretching and proper recovery.
-                        </p>
-
-                    </div>
-
-                    <strong>
-                        15 min
-                    </strong>
-
-                </div>
-
+<div class="workout-list" id="workoutList">
+</div>
+    
 
             </div>
 
@@ -488,6 +380,174 @@
         }
 
     </script>
+  <script>
+
+const savedUser = localStorage.getItem("fitbuddyUser");
+
+const workoutList = document.getElementById("workoutList");
+
+
+if (savedUser) {
+
+    const user = JSON.parse(savedUser);
+
+
+    // USER DETAILS
+
+    document.getElementById("name").textContent =
+        user.name || "Your Name";
+
+    document.getElementById("userName").textContent =
+        user.name || "Your Name";
+
+    document.getElementById("userGoal").textContent =
+        user.goal || "General Fitness";
+
+    document.getElementById("userLevel").textContent =
+        user.level || "Beginner";
+
+    document.getElementById("userDays").textContent =
+        (user.days || "3") + " Days";
+
+    document.getElementById("userWeight").textContent =
+        (user.weight || "Not provided") + " kg";
+
+
+    // PLAN SETTINGS
+
+    const goal = user.goal || "General Fitness";
+
+    const days = Number(user.days) || 3;
+
+    const duration = Number(user.duration) || 30;
+
+    const location = user.location || "Home";
+
+
+    // WORKOUT PLANS
+
+    const plans = {
+
+        "General Fitness": [
+
+            ["Warm Up", "Light walking, arm circles and gentle movements."],
+
+            ["Full Body Movement", "Squats, wall push-ups and controlled movements."],
+
+            ["Core & Mobility", "Gentle core movements and mobility exercises."],
+
+            ["Light Cardio", "Brisk walking or easy cycling at a comfortable pace."],
+
+            ["Recovery", "Easy movement, stretching and proper recovery."]
+
+        ],
+
+
+        "Strength": [
+
+            ["Warm Up", "Light walking and gentle mobility movements."],
+
+            ["Lower Body", "Controlled squats and chair sit-to-stand movements."],
+
+            ["Upper Body", "Wall push-ups and simple upper-body movements."],
+
+            ["Full Body Strength", "A balanced routine using controlled bodyweight movements."],
+
+            ["Recovery", "Gentle stretching and easy recovery movements."]
+
+        ],
+
+
+        "Endurance": [
+
+            ["Warm Up", "Easy walking and gentle dynamic movements."],
+
+            ["Brisk Walk", "Comfortable-paced walking or easy cycling."],
+
+            ["Cardio & Mobility", "Light cardio followed by gentle mobility movements."],
+
+            ["Active Movement", "A steady activity such as walking, cycling or dancing."],
+
+            ["Recovery", "Easy walking and gentle stretching."]
+
+        ],
+
+
+        "Flexibility": [
+
+            ["Gentle Warm Up", "Easy walking and gentle joint movements."],
+
+            ["Full Body Mobility", "Controlled mobility movements for the whole body."],
+
+            ["Upper Body Mobility", "Gentle shoulder, arm and upper-body mobility."],
+
+            ["Lower Body Mobility", "Gentle hip, leg and ankle mobility."],
+
+            ["Recovery Stretch", "Relaxed stretching and easy recovery movements."]
+
+        ]
+
+    };
+
+
+    const selectedPlan =
+        plans[goal] || plans["General Fitness"];
+
+
+    // CREATE WORKOUT CARDS
+
+    workoutList.innerHTML = "";
+
+
+    for (let i = 0; i < days; i++) {
+
+        const workout =
+            selectedPlan[i % selectedPlan.length];
+
+
+        const workoutItem =
+            document.createElement("div");
+
+        workoutItem.className =
+            "workout-item";
+
+
+        workoutItem.innerHTML = `
+
+            <div class="number">
+                ${String(i + 1).padStart(2, "0")}
+            </div>
+
+            <div class="workout-info">
+
+                <h3>
+                    ${workout[0]}
+                </h3>
+
+                <p>
+                    ${workout[1]}
+                </p>
+
+                <small>
+                    📍 ${location}
+                </small>
+
+            </div>
+
+            <strong>
+                ${duration} min
+            </strong>
+
+        `;
+
+
+        workoutList.appendChild(workoutItem);
+
+    }
+
+}
+
+</script>  
 
 
 </body>
