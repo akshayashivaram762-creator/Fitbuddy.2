@@ -94,6 +94,15 @@
                     placeholder="Enter your age"
                     required
                 >
+                <label>Weight</label>
+
+                <input
+                    type="number"
+                    id="weight"
+                    placeholder="Enter your weight in kg"
+                    min="1"
+                    required
+                >
 
 
                 <label>Your Goal</label>
@@ -206,6 +215,10 @@
 
                     age: document
                         .getElementById("age")
+                        .value,
+                   
+                    weight: document
+                        .getElementById("weight")
                         .value,
 
                     goal: document
