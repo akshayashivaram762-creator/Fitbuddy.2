@@ -4,7 +4,6 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>FitBuddy | My Plan</title>
@@ -76,11 +75,15 @@
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             font-size: 14px;
+            position: relative;
+            font-weight: 600;
         }
 
         .calendar-date.empty {
             background: transparent;
         }
+
+        /* TODAY */
 
         .calendar-date.today {
             background: #a855f7;
@@ -89,11 +92,56 @@
             box-shadow: 0 0 15px rgba(168, 85, 247, 0.35);
         }
 
+        /* COMPLETED */
+
+        .calendar-date.completed {
+            background: #22c55e;
+            color: white;
+            box-shadow: 0 0 12px rgba(34, 197, 94, 0.35);
+        }
+
+        /* MISSED */
+
+        .calendar-date.missed {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 0 12px rgba(239, 68, 68, 0.35);
+        }
+
+        .status-mark {
+            font-size: 18px;
+            margin-left: 3px;
+        }
+
         .calendar-today-info {
             margin-top: 18px;
             text-align: center;
             font-size: 14px;
             opacity: 0.85;
+        }
+
+        /* COMPLETE BUTTON */
+
+        .complete-btn {
+            margin-top: 15px;
+            padding: 11px 18px;
+            border: none;
+            border-radius: 10px;
+            background: #22c55e;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .complete-btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .complete-btn.completed {
+            background: #15803d;
         }
 
         @media (max-width: 600px) {
@@ -176,7 +224,6 @@
 
         <section class="details-box">
 
-
             <div class="detail-item">
 
                 <span>👤</span>
@@ -236,7 +283,6 @@
 
             </div>
 
-
         </section>
 
 
@@ -262,7 +308,6 @@
 
 
             <div class="calendar-box">
-
 
                 <div class="calendar-header">
 
@@ -296,17 +341,14 @@
 
                 <div
                     class="calendar-dates"
-                    id="calendarDates"
-                >
+                    id="calendarDates">
                 </div>
 
 
                 <div
                     class="calendar-today-info"
-                    id="todayInfo"
-                >
+                    id="todayInfo">
                 </div>
-
 
             </div>
 
@@ -316,7 +358,6 @@
         <!-- WORKOUT SECTION -->
 
         <section class="content-section">
-
 
             <div class="section-heading">
 
@@ -339,8 +380,7 @@
 
             <div
                 class="workout-list"
-                id="workoutList"
-            >
+                id="workoutList">
             </div>
 
 
@@ -350,7 +390,6 @@
         <!-- FEATURES -->
 
         <section class="content-section">
-
 
             <div class="section-heading">
 
@@ -376,8 +415,7 @@
 
                 <a
                     href="nutrition.html"
-                    class="feature-box"
-                >
+                    class="feature-box">
 
                     <div class="feature-icon">
                         🥗
@@ -406,8 +444,7 @@
 
                 <a
                     href="weekly-plan.html"
-                    class="feature-box"
-                >
+                    class="feature-box">
 
                     <div class="feature-icon">
                         📅
@@ -436,8 +473,7 @@
 
                 <a
                     href="ai-powered.html"
-                    class="feature-box"
-                >
+                    class="feature-box">
 
                     <div class="feature-icon">
                         🤖
@@ -466,8 +502,7 @@
 
                 <a
                     href="upgrade.html"
-                    class="feature-box"
-                >
+                    class="feature-box">
 
                     <div class="feature-icon">
                         🔄
@@ -572,8 +607,8 @@
 
                 document.getElementById("userWeight").textContent =
                     user.weight
-                    ? user.weight + " kg"
-                    : "Not provided";
+                        ? user.weight + " kg"
+                        : "Not provided";
 
 
                 /* PLAN SETTINGS */
@@ -784,6 +819,16 @@
                             ${duration} min
                         </strong>
 
+                        <br>
+
+                        <button
+                            class="complete-btn"
+                            onclick="completeWorkout(this)">
+
+                            ✓ Complete Workout
+
+                        </button>
+
                     `;
 
 
@@ -801,6 +846,70 @@
                 );
 
             }
+
+        }
+
+
+        /* =================================
+           WORKOUT COMPLETION
+        ================================= */
+
+        function getTodayKey() {
+
+            const date = new Date();
+
+            return (
+                date.getFullYear()
+                + "-"
+                + String(date.getMonth() + 1).padStart(2, "0")
+                + "-"
+                + String(date.getDate()).padStart(2, "0")
+            );
+
+        }
+
+
+        function getCompletedDates() {
+
+            return JSON.parse(
+                localStorage.getItem("fitbuddyCompletedDates")
+            ) || [];
+
+        }
+
+
+        function completeWorkout(button) {
+
+            const todayKey =
+                getTodayKey();
+
+            let completedDates =
+                getCompletedDates();
+
+
+            if (!completedDates.includes(todayKey)) {
+
+                completedDates.push(todayKey);
+
+            }
+
+
+            localStorage.setItem(
+                "fitbuddyCompletedDates",
+                JSON.stringify(completedDates)
+            );
+
+
+            button.textContent =
+                "✓ Workout Completed";
+
+
+            button.classList.add(
+                "completed"
+            );
+
+
+            renderCalendar();
 
         }
 
@@ -843,15 +952,21 @@
 
 
             const calendarDates =
-                document.getElementById("calendarDates");
+                document.getElementById(
+                    "calendarDates"
+                );
 
 
             const calendarTitle =
-                document.getElementById("calendarMonth");
+                document.getElementById(
+                    "calendarMonth"
+                );
 
 
             const todayInfo =
-                document.getElementById("todayInfo");
+                document.getElementById(
+                    "todayInfo"
+                );
 
 
             /* MONTH + YEAR */
@@ -885,6 +1000,12 @@
             calendarDates.innerHTML = "";
 
 
+            /* COMPLETED DATES */
+
+            const completedDates =
+                getCompletedDates();
+
+
             /* EMPTY CELLS */
 
             for (
@@ -896,8 +1017,10 @@
                 const empty =
                     document.createElement("div");
 
+
                 empty.className =
                     "calendar-date empty";
+
 
                 calendarDates.appendChild(
                     empty
@@ -923,6 +1046,14 @@
                     "calendar-date";
 
 
+                const dateKey =
+                    calendarYear
+                    + "-"
+                    + String(calendarMonth + 1).padStart(2, "0")
+                    + "-"
+                    + String(date).padStart(2, "0");
+
+
                 dateBox.textContent =
                     date;
 
@@ -942,6 +1073,62 @@
                     dateBox.classList.add(
                         "today"
                     );
+
+                }
+
+
+                /* COMPLETED */
+
+                if (
+                    completedDates.includes(dateKey)
+                ) {
+
+                    dateBox.classList.remove(
+                        "today"
+                    );
+
+                    dateBox.classList.add(
+                        "completed"
+                    );
+
+                    dateBox.innerHTML =
+                        date + ' <span class="status-mark">✓</span>';
+
+                }
+
+
+                /* MISSED */
+
+                else {
+
+                    const dateObject =
+                        new Date(
+                            calendarYear,
+                            calendarMonth,
+                            date
+                        );
+
+
+                    const currentDate =
+                        new Date(
+                            today.getFullYear(),
+                            today.getMonth(),
+                            today.getDate()
+                        );
+
+
+                    if (
+                        dateObject < currentDate
+                    ) {
+
+                        dateBox.classList.add(
+                            "missed"
+                        );
+
+                        dateBox.innerHTML =
+                            date + ' <span class="status-mark">✗</span>';
+
+                    }
 
                 }
 
